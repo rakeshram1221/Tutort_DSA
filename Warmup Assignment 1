@@ -1,0 +1,185 @@
+Q9)
+
+public class Solution {
+    public void MoveZeroes(int[] nums) {
+        int count = 0;
+        for(int i=0; i<nums.Length; i++){
+            if(nums[i] != 0)
+            {
+                nums[count++] = nums[i];
+            }
+        }
+        while(count < nums.Length)
+        {
+            nums[count] = 0;
+            count++;
+        }
+    }
+}
+
+Q8)
+
+public class Solution {
+    public int[] FairCandySwap(int[] aliceSizes, int[] bobSizes) {
+        int diff = (bobSizes.Sum() - aliceSizes.Sum())/2;
+        HashSet<int> hst = new HashSet<int>();
+        
+        for(int i=0; i<bobSizes.Length; i++)
+        {
+            hst.Add(bobSizes[i]);
+        }
+        
+        for(int i=0; i<aliceSizes.Length; i++)
+        {
+            if(hst.Contains(diff+aliceSizes[i]))
+            {
+                return new int[] {aliceSizes[i], diff+aliceSizes[i]};
+            }
+        }
+        return null;
+    }
+}
+
+Q7)
+
+public class Solution {
+    public int MajorityElement(int[] nums) {
+        int count = 1, index = 0;
+        for(int i=0; i<nums.Length; i++)
+        {
+            if(nums[i] == nums[index])
+            {
+                count++;
+            }
+            else
+            {
+                count--;
+            }
+            
+            if(count == 0)
+            {
+                count = 1;
+                index = i;
+            }
+        }
+        return nums[index];
+    }
+}
+
+Q6)
+
+public class Solution {
+    public int[][] Transpose(int[][] matrix) {
+        int rowCount = matrix.Length;
+        int colCount = matrix[0].Length;
+        int[][] res = new int[colCount][];
+        for(int i=0; i<colCount; i++)
+        {
+            res[i] = new int[rowCount];
+            for(int j=0; j<rowCount; j++)
+            {
+                res[i][j] = matrix[j][i];
+            }        
+        }
+        return res;
+    }
+}
+
+Q5)
+
+public class Solution {
+    public bool ThreeConsecutiveOdds(int[] arr) {
+        int count = 0;
+        for(int i=0; i<arr.Length; i++)
+        {
+            if(arr[i] % 2 != 0)
+            {
+                count++;
+            }
+            else
+            {
+                count=0;
+            }
+            
+            if(count == 3)
+            {
+                return true;
+            }
+        }
+    return false;
+    }
+}
+
+Q4)
+
+using System;
+using System.Collections.Generic;
+
+public class Solution {
+    public IList<IList<int>> MinimumAbsDifference(int[] arr) {
+        Array.Sort(arr);
+        int absDiff = Math.Abs(arr[0]-arr[1]);
+        IList<IList<int>> res = new List<IList<int>>();
+        
+        for(int i=0; i<arr.Length-1; i++)
+        {
+            if(Math.Abs(arr[i]-arr[i+1]) < absDiff)
+            {
+                res.Clear();
+                absDiff = Math.Abs(arr[i]-arr[i+1]);
+            }
+            if(Math.Abs(arr[i]-arr[i+1]) == absDiff)
+            {
+                res.Add(new List<int>() {arr[i], arr[i+1]});
+            }
+        }
+        return res.ToList();
+    }
+}
+
+Q3)
+
+using System;
+using System.Linq;
+public class Solution {
+    public int NumJewelsInStones(string jewels, string stones) {
+        int sum = 0;
+        foreach(char ch in jewels)
+        {
+            sum+=stones.Where(x => x==ch).Count();
+        }
+        return sum;
+    }
+}
+
+Q2)
+
+using System;
+
+public class Solution {
+    public int[] RunningSum(int[] nums) {
+        int[] res = new int[nums.Length];
+        res[0] = nums[0];
+        for(int i=1; i<nums.Length; i++)
+        {
+            res[i] = res[i-1] + nums[i];
+        }
+        return res;
+    }
+}
+
+Q1)
+
+using System;
+using System.Linq;
+
+public class Solution {
+    public int MaximumWealth(int[][] accounts) {
+        int[] res = new int[accounts.Length];
+        for(int i=0; i<accounts.Length; i++)
+        {
+            res[i] = accounts[i].Sum();
+        }
+        return res.Max();
+    }
+}
