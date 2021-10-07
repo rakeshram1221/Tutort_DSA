@@ -1,0 +1,207 @@
+Q11.
+
+public int BalanceNumber(int[] arr)
+{
+	int sumStart = 0, sumEnd = 0;
+	for(int i=0; i<arr.Length; i++)
+	{
+		if(i < arr.Length/2)
+		{
+			sumStart += arr[i];
+		}
+		else
+		{
+			sumEnd += arr[i];
+		}
+	}
+	return Math.Abs(sumStart - sumEnd);
+}
+
+Q10.
+
+public string FascinatingNumber(int N)
+{
+	int[] arr = new int[10];
+	bool flag = true;
+	string num = String.Join("", N.ToString(), (N*2).ToString(), (N*3).ToString());
+	for(int i=0; i<num.Length; i++)
+	{
+		int temp = num[i] - '0';
+		if(arr[temp] > 0 && temp != 0)
+		{	
+			break;
+		}
+		else
+		{
+			arr[temp]++;
+		}
+	}
+	for(int i=1; i<arr.Length; i++)
+	{
+		if(arr[i] == 0)
+		{
+			flag = false;
+		}
+	}
+	if(flag)
+	{
+		return "Fascinating";
+	}
+	else
+	{
+		return "Not Fascinating";
+	}
+}
+
+Q9.
+
+public int SumSeries(int N)
+{
+	return (N*(N+1))/2;
+}
+
+Q8.
+
+public int ExpectTwoGreatest(int[] arr)
+{
+	int[] res = new int[arr.Length-2];
+	for(int i=0; i<arr.Length-1; i++)
+	{
+		for(int j=i+1; j<arr.Length; j++)
+		{
+			if(arr[i] > arr[j])
+			{
+				int temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+			}
+		}
+	}
+	for(int i=0; i<arr.Length-2; i++)
+	{
+		res[i] = arr[i];
+	}
+	return res;
+}
+
+Q7.
+
+public int FinalElement(int[] arr)
+{
+	List<int> lst= arr.ToList();
+	int counter = 1;
+	while(lst.Count > 1)
+	{
+		int min=lst[0], max=-1;
+		for(int i=0; i<lst.Count; i++)
+		{
+			if(lst[i] > max)
+			{
+				max = lst[i];
+			}
+			if(lst[i] < min)
+			{
+				min = lst[i];
+			}
+		}
+		if(counter % 2 == 0)
+		{
+			lst.Remove(min);
+			counter++;
+		}
+		else
+		{
+			lst.Remove(max);
+			counter++;
+		}
+	}
+	return lst[0];
+}
+
+Q6.
+
+public void ReverseMatch(int[] arr)
+{
+	int[] rev = new int[arr.Length];
+	bool flag = true;
+	for(int i=arr.Length-1, j=0; i>=0; i--,j++)
+	{
+		rev[j] = arr[i];
+	}
+	for(int i=0; i<arr.Length; i++)
+	{
+		if(arr[i] != rev[i])
+		{
+			flag = false;
+			break;
+		}
+	}
+	if(flag)
+	{
+		Console.WriteLine("PERFECT");
+	}
+	else
+	{
+		Console.WriteLine("NOT PERFECT");
+	}
+}
+
+Q5.
+
+public void ElementIndexMatch(int[] arr)
+{
+	for(int i=0;i<arr.Length;i++)
+	{
+		if(arr[i] == (i+1))
+		{
+		      Console.WriteLine(arr[i]);
+		}
+	}
+}
+
+Q4.
+
+public void AlternateIndex(int[] arr)
+{
+	for(int i=0;i<arr.Length;i++)
+  	{
+    		if(i%2==0)
+    		{
+		        Console.Write(arr[i] + " ");
+    		}
+	}
+}
+
+Q3.
+
+public void MinElements(int[] arr, int X)
+{
+	int count = 0;
+  	for(int i=0;i<arr.Length;i++)
+  	{
+		if(arr[i] <= X)
+		{
+			count++;
+    		}
+  	}
+  	Console.WriteLine(count);
+}
+
+Q2.
+
+public void PrintKey(int[] arr, int key)
+{
+	Console.WriteLine(arr[key]);
+}
+
+Q1.
+
+public void ArraySum(int[] arr)
+{
+  	int sum = 0;
+  	for(int i=0; i<arr.Length; i++)
+  	{
+    		sum+=arr[i];
+  	}
+  	Console.WriteLine(sum);
+}
